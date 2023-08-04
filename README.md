@@ -1,2 +1,2 @@
 # JoblessApp
-this is an that is created to help people find jobs faster
+This is an appliction that is created for the purposeo of helping people find jobs faster
