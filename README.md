@@ -1,2 +1,23 @@
+# Expo Router Example
+
+Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+
+## 🚀 How to use
+
+```sh
+npx create-expo-app -e with-router
+```
+
+## 📝 Notes
+
+- [Expo Router: Docs](https://expo.github.io/router)
+- [Expo Router: Repo](https://github.com/expo/router)
+
 # JoblessApp
-this is an that is created to help people find jobs faster
+
+This is an appliction that is created for the purposeo of helping people find jobs faster
+
+#programming language and frameworks used:
+ -JavaScript 
+ -ReactNative
+ -TypeScript
