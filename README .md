@@ -16,3 +16,8 @@ npx create-expo-app -e with-router
 # JoblessApp
 
 This is an appliction that is created for the purposeo of helping people find jobs faster
+
+#programming language and frameworks used:
+ -JavaScript 
+ -ReactNative
+ -TypeScript
