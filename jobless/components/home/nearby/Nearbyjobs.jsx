@@ -19,8 +19,8 @@ import useFetch from '../../../hook/useFetch';
 const Nearbyjobs = () => {
   const router = useRouter();
   const{data, isLoading, error} = useFetch(
-    'search',{
-      query : 'React developer',
+    "search",{
+      query : 'Kotlin developer',
       num_pages : 1,
     })
     console.log(data);
@@ -42,7 +42,7 @@ const Nearbyjobs = () => {
             <NearbyJobCard
               job={job}
               key={`nearby-job-${job.job_id}`}
-              handleNavigate={() => router.push(`/j ob-details/${job.job_id}`)}
+              handleNavigate={() => router.push(`/job-details/${job.job_id}`)}
             />
           ))
         )}
