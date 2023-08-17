@@ -29,23 +29,26 @@ const JobDetails = () => {
 
     const { data, isLoading, error, refetch } = useFetch("job-details", {
         job_id: params.id,
-    })
-
+    });
+    
+    const [activeTab, setActiveTab] = useState(tabs[0]);
     const [refreshing, setRefreshing] = useState(false);
-     const onRefresh = useCallback(() => {
-       setRefreshing(true);
-       refetch()
-       setRefreshing(false)
+
+    const onRefresh = useCallback(() => {
+      setRefreshing(true);
+      refetch()
+      setRefreshing(false)
      }, []);
 
     return(
         <SafeAreaView style={{flex:1, backgroundColor: COLORS.lightWhite}}>
-            <Stack.Screen options ={{
+            <Stack.Screen 
+              options ={{
                 headerStyle: { background: COLORS.lightWhite},
                 headerShadowvisible: false,
                 headerBackVisible: false,
                 headerLeft:()=> (
-                    <ScreenHeaderBtn
+                 <ScreenHeaderBtn
                     iconUrl={icons.left}
                     dimension="60%"
                     handlePress={() => router.back()}
@@ -62,30 +65,42 @@ const JobDetails = () => {
             }}
               />
               <>
-               <ScrollView showVerticalScrollIndicator={false} refreshControl=
-              {<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
+            <ScrollView showVerticalScrollIndicator={false} 
+               refreshControl={
+                   <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
+                   
+            >
 
-                {isLoading ? (
-                    <ActivityIndicator size="large" color={COLORS.primary}/>
-                ): error ? (
-                    <Text>something went wrong</Text>
-                ) : data.length === 0 ? (
-                    <Text>No data</Text>
-                ):(
-                    <View style={{padding: SIZES.medium, paddingBottom: 100}}>
+            {isLoading ? (
+            <ActivityIndicator size='large' color={COLORS.primary} />
+              ) : error ? (
+            <Text>Something went wrong</Text>
+              ) : data.length === 0 ? (
+            <Text>No data available</Text>
+              ) : (
+            <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
+              <Company
+                companyLogo={data[0].employer_logo}
+                jobTitle={data[0].job_title}
+                companyName={data[0].employer_name}
+                location={data[0].job_country}
+              />
 
-                    </View>
-                )
-                }
+              <JobTabs
+                tabs={tabs}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+              />
 
-              </ScrollView>
-               
-              </>
+              {displayTabContent()}
+            </View>
+          )}
+        </ScrollView>
 
-          
-        </SafeAreaView>
-    )
-
-}
+        <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} />
+      </>
+    </SafeAreaView>
+  );
+};
 
 export default JobDetails
