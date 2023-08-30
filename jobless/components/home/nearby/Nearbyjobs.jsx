@@ -1,14 +1,14 @@
-import {useState} from 'react';
-import {useRouter} from 'expo-router';
+import { useState } from 'react';
+import { useRouter } from 'expo-router';
 import {
-  View, 
-  Text, 
-  TouchableOpacity,  
+  View,
+  Text,
+  TouchableOpacity,
   ActivityIndicator
 } from 'react-native';
 
 import styles from './nearbyjobs.style';
-import {COLORS, SIZES} from '../../../constants';
+import { COLORS, SIZES } from '../../../constants';
 import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import { isLoading } from 'expo-font';
 import useFetch from '../../../hook/useFetch';
@@ -18,12 +18,12 @@ import useFetch from '../../../hook/useFetch';
 
 const Nearbyjobs = () => {
   const router = useRouter();
-  const{data, isLoading, error} = useFetch(
-    "search",{
-      query : 'Kotlin developer',
-      num_pages : 1,
-    })
-    console.log(data);
+  const { data, isLoading, error } = useFetch(
+    "search", {
+    query: 'Kotlin developer',
+    num_pages: 1,
+  })
+  // console.log(data);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -33,7 +33,7 @@ const Nearbyjobs = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.cardsContainer}>
-         {isLoading ? (
+        {isLoading ? (
           <ActivityIndicator size='large' color={COLORS.primary} />
         ) : error ? (
           <Text>Something went wrong</Text>
